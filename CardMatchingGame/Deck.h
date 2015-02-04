@@ -13,5 +13,4 @@
 -(void) addCard:(Card *)card atTop:(BOOL)top;
 -(void) addCard:(Card *)card;
 -(Card *)drawRandomCard;
-
 @end

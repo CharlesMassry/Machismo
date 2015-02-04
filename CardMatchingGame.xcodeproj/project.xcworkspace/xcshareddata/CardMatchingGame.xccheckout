@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>09021DBF-0DFB-4FC7-9495-41D39B7C0989</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CardMatchingGame</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>EF7C147EA2CD3B93DE635B6A9925998978ADE0D5</key>
+		<string>https://github.com/CharlesMassry/Machismo.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CardMatchingGame.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>EF7C147EA2CD3B93DE635B6A9925998978ADE0D5</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/CharlesMassry/Machismo.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>EF7C147EA2CD3B93DE635B6A9925998978ADE0D5</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EF7C147EA2CD3B93DE635B6A9925998978ADE0D5</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CardMatchingGame</string>
+		</dict>
+	</array>
+</dict>
+</plist>
