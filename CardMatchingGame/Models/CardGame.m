@@ -10,7 +10,7 @@
 
 @interface CardGame ()
 @property (nonatomic, readwrite)NSInteger score;
-@property (nonatomic, strong)NSMutableArray *cards; // cards in total game
+@property (nonatomic, strong)NSMutableArray *cards; // total cards in game
 @property (nonatomic, strong)NSMutableArray *cardsToCheck;
 @end
 
@@ -51,51 +51,34 @@ static const int CARDS_TO_CHECK = 3;
 
 -(void)chooseCardAtIndex:(NSUInteger)index {
     Card *card = [self cardAtIndex:index];
-    if (![self.cardsToCheck containsObject:card]) { // check if the card has been selected
-        self.score -= COST_TO_CHOOSE; // calculate score
-        if (self.cardsToCheck.count < (CARDS_TO_CHECK - 1)) { // check if the cards to check the right number of cards
-            [self.cardsToCheck addObject:card]; // if not add the card to the cards to check collection
-            card.chosen = YES; // mark it as chosen
-        } else { // if there are the right number of cards to check
-            if (!card.isMatched) { // if the card has not been matched yet
-                if (card.isChosen) { // if the card is chosen
-                    [self.cardsToCheck removeObject:card]; // remove it from the cards to check
-                    card.chosen = NO; // set it to not chosen
-                } else { // if it is chosen...
-                    
+    if ([self cardIsNotSelected:card]) {
+        [self.cardsToCheck addObject:card];
+        self.score -= COST_TO_CHOOSE;
+        if ([self rightNumberOfCardsToCheck]) {
+            card.chosen = YES;
+        } else {
+            [self.cardsToCheck addObject:card];
+            if (!card.isMatched) {
+                if (card.isChosen) {
+                    [self.cardsToCheck removeObject:card];
+                    card.chosen = NO;
+                } else {
                     BOOL noneMatched = NO;
-                    for (Card *otherCard in self.cardsToCheck) { // iterate through the cards to check collection
-                        
-                        if (otherCard.isChosen && !otherCard.isMatched) { // if the current card is chosen and not matched
-                            int matchScore = [card match:self.cardsToCheck]; // determine the score for this possible match
-                            // needs to revert all if they dont all match
-                            if (matchScore) { // if it came back with a score
-                                self.score += matchScore * MATCH_BONUS; // calculate the current game score
-                                card.matched = YES;  // set the card to be matched
-                                otherCard.matched = YES; // set the other card to be matched
-                                // need to set all cards
+                    for (Card *otherCard in self.cardsToCheck) {
+                        if ([self cardIsChosenAndNotMatched:otherCard]) {
+                            int matchScore = [card match:self.cardsToCheck];
+                            if (matchScore) {
+                                self.score += matchScore * MATCH_BONUS;
+                                card.matched = YES;
+                                otherCard.matched = YES;
                             } else {
-                                self.score -= MISMATCH_PENALTY; // calculate score
+                                self.score -= MISMATCH_PENALTY;
                                 noneMatched = YES;
                             }
-                            break; // break out of iteration
+                            break;
                         }
                     }
-                    
-                    if (noneMatched) {
-                        for (Card *otherCard in self.cardsToCheck) {
-                            otherCard.matched = NO;
-                            otherCard.chosen = NO;
-                        }
-                        card.matched = NO;
-                    } else {
-                        for (Card *otherCard in self.cardsToCheck) {
-                            otherCard.matched = YES;
-                            otherCard.chosen = YES;
-                        }
-                        card.chosen = YES; // card is chosen
-                        card.matched = YES;
-                    }
+                    [self checkAllCardsIfMatched:noneMatched];
                 }
             }
             [self.cardsToCheck removeAllObjects];
@@ -104,6 +87,26 @@ static const int CARDS_TO_CHECK = 3;
         card.chosen = NO;
         [self.cardsToCheck removeObject:card];
     }
+}
+
+-(void)checkAllCardsIfMatched:(BOOL)noneMatched {
+    if (noneMatched) {
+        [self.cardsToCheck makeObjectsPerformSelector:@selector(doNotMatchAndDoNotChoose)];
+    } else {
+        [self.cardsToCheck makeObjectsPerformSelector:@selector(matchAndChoose)];
+    }
+}
+
+-(BOOL)rightNumberOfCardsToCheck {
+    return self.cardsToCheck.count < CARDS_TO_CHECK;
+}
+
+-(BOOL)cardIsNotSelected:(Card *)card {
+    return ![self.cardsToCheck containsObject:card];
+}
+
+-(BOOL)cardIsChosenAndNotMatched:(Card *)card {
+    return card.isChosen && !card.isMatched;
 }
 
 -(Card *)cardAtIndex:(NSUInteger)index {

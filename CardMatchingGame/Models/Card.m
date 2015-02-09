@@ -22,4 +22,14 @@
     return score;
 }
 
+-(void)doNotMatchAndDoNotChoose {
+    self.matched = NO;
+    self.chosen = NO;
+}
+
+-(void)matchAndChoose {
+    self.matched = YES;
+    self.chosen = YES;
+}
+
 @end
