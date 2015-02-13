@@ -4,19 +4,17 @@
 //
 //  Created by Charlie Massry on 2/1/15.
 //  Copyright (c) 2015 Charlie Massry. All rights reserved.
-//
 
-#import "ViewController.h"
+#import "CardGameViewController.h"
 #import "CardGame.h"
-#import "PlayingCardDeck.h"
 
-@interface ViewController ()
+@interface CardGameViewController ()
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (strong, nonatomic) CardGame *game;
 @end
 
-@implementation ViewController
+@implementation CardGameViewController
 
 -(CardGame *)game {
     if (!_game) {
@@ -27,8 +25,8 @@
     return _game;
 }
 
--(Deck *)createDeck {
-    return [[PlayingCardDeck alloc] init];
+-(Deck *)createDeck { // abstract
+    return nil;
 }
 
 -(IBAction)touchCardButton:(UIButton *)sender {
