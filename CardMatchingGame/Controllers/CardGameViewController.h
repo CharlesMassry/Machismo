@@ -9,9 +9,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Deck.h"
+#import "CardGame.h"
 
 @interface CardGameViewController : UIViewController
-
+@property (nonatomic) NSUInteger flipCount;
+@property (strong, nonatomic) CardGame *game;
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+-(void)updateUI;
 // protected
 // for subclasses
 -(Deck *)createDeck;

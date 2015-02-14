@@ -24,6 +24,7 @@
 		35BF20E41A80649B00EC3620 /* blank card rounded corner.png in Resources */ = {isa = PBXBuildFile; fileRef = 35BF20E01A80649B00EC3620 /* blank card rounded corner.png */; };
 		35BF20E51A80649B00EC3620 /* stanford-tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 35BF20E11A80649B00EC3620 /* stanford-tree.png */; };
 		35BF20E61A80649B00EC3620 /* stanford.png in Resources */ = {isa = PBXBuildFile; fileRef = 35BF20E21A80649B00EC3620 /* stanford.png */; };
+		35D4388C1A8FC04F00A36B81 /* PlayingCardGameStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D4388B1A8FC04F00A36B81 /* PlayingCardGameStatsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,8 @@
 		35BF20E01A80649B00EC3620 /* blank card rounded corner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "blank card rounded corner.png"; path = "Images.xcassets/blank card rounded corner.png"; sourceTree = "<group>"; };
 		35BF20E11A80649B00EC3620 /* stanford-tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stanford-tree.png"; path = "Images.xcassets/stanford-tree.png"; sourceTree = "<group>"; };
 		35BF20E21A80649B00EC3620 /* stanford.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stanford.png; path = Images.xcassets/stanford.png; sourceTree = "<group>"; };
+		35D4388A1A8FC04F00A36B81 /* PlayingCardGameStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayingCardGameStatsViewController.h; path = Controllers/PlayingCardGameStatsViewController.h; sourceTree = "<group>"; };
+		35D4388B1A8FC04F00A36B81 /* PlayingCardGameStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCardGameStatsViewController.m; path = Controllers/PlayingCardGameStatsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,8 @@
 			children = (
 				35279C5B1A885C5800D6EFA7 /* CardGameViewController.h */,
 				35279C5C1A885C5800D6EFA7 /* CardGameViewController.m */,
+				35D4388A1A8FC04F00A36B81 /* PlayingCardGameStatsViewController.h */,
+				35D4388B1A8FC04F00A36B81 /* PlayingCardGameStatsViewController.m */,
 				35A545C91A8C1E3D00F14B3B /* PlayingCardGameViewController.h */,
 				35A545CA1A8C1E3E00F14B3B /* PlayingCardGameViewController.m */,
 			);
@@ -290,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35279C5D1A885C5800D6EFA7 /* CardGameViewController.m in Sources */,
+				35D4388C1A8FC04F00A36B81 /* PlayingCardGameStatsViewController.m in Sources */,
 				35279C5A1A885C2100D6EFA7 /* PlayingCardDeck.m in Sources */,
 				35A021D01A7E6F3A0070B41D /* AppDelegate.m in Sources */,
 				35279C561A885C2100D6EFA7 /* Card.m in Sources */,

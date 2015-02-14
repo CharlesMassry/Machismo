@@ -9,9 +9,7 @@
 #import "CardGame.h"
 
 @interface CardGameViewController ()
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
-@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
-@property (strong, nonatomic) CardGame *game;
+@property (weak, nonatomic) IBOutlet UINavigationItem *scoreLabel;
 @end
 
 @implementation CardGameViewController
@@ -29,10 +27,9 @@
     return nil;
 }
 
--(IBAction)touchCardButton:(UIButton *)sender {
-    NSUInteger chosenButton = [self.cardButtons indexOfObject:sender];
-    [self.game chooseCardAtIndex:chosenButton];
-    [self updateUI];
+-(NSUInteger)flipCount {
+    if (!_flipCount) _flipCount = 0;
+    return _flipCount;
 }
 
 -(void)updateUI {
@@ -43,11 +40,22 @@
         [cardButton setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
         cardButton.enabled = !card.isMatched;
     }
-    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.game.score];
+    self.scoreLabel.title = [NSString stringWithFormat:@"Score: %ld", (long)self.game.score];
 }
 
 -(NSString *)titleForCard:(Card *)card {
-    return card.isChosen ? card.contents : @"";
+    if (card.isChosen) {
+        return card.contents;
+    } else {
+        return @"";
+    }
+}
+- (IBAction)touchForNewGameButton:(UIButton *)sender {
+    self.game = nil;
+    self.game = [[CardGame alloc] initWithCardCount:self.cardButtons.count
+                              usingDeck:[self createDeck]];
+    self.flipCount = 0;
+    [self updateUI];
 }
 
 -(UIImage *)backgroundImageForCard:(Card *)card {

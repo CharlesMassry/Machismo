@@ -8,11 +8,31 @@
 
 #import "PlayingCardGameViewController.h"
 #import "PlayingCardDeck.h"
+#import "PlayingCardGameStatsViewController.h"
+
+@interface PlayingCardGameViewController ()
+
+@end
 
 @implementation PlayingCardGameViewController
 
 -(Deck *)createDeck {
     return [[PlayingCardDeck alloc] init];
+}
+
+-(IBAction)touchCardButton:(UIButton *)sender {
+    NSUInteger chosenButtonIndex = [self.cardButtons indexOfObject:sender];
+    [self.game chooseCardAtIndex:chosenButtonIndex];
+    [self updateUI];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"Playing Card Stats"]) {
+        if ([segue.destinationViewController isKindOfClass:[PlayingCardGameStatsViewController class]]) {
+            PlayingCardGameStatsViewController *playingCardGameStatsController = (PlayingCardGameStatsViewController *)segue.destinationViewController;
+            playingCardGameStatsController.flipCount = self.game.flipCount;
+        }
+    }
 }
 
 @end

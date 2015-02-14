@@ -12,15 +12,23 @@
 
 -(int)match:(NSArray *)otherCards {
     int score = 0;
+    BOOL rankMatch = YES;
+    BOOL suitMatch = YES;
     for (PlayingCard *otherCard in otherCards) {
-        if ([self.suit isEqualToString:otherCard.suit]) {
-            score ++;
-        } else if (otherCard.rank == self.rank) {
-            score += 4;
+        if ([self.suit isEqualToString:otherCard.suit] && suitMatch) {
+            rankMatch = NO;
+        } else if (otherCard.rank == self.rank && rankMatch) {
+            suitMatch = NO;
         } else {
-            score = 0;
+            rankMatch = NO;
+            suitMatch = NO;
             break;
         }
+    }
+    if (!rankMatch && suitMatch) {
+        score += otherCards.count;
+    } else if (!suitMatch && rankMatch) {
+        score += 4;
     }
     return score;
 }

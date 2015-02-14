@@ -11,13 +11,17 @@
 @interface CardGame ()
 @property (nonatomic, readwrite)NSInteger score;
 @property (nonatomic, strong)NSMutableArray *cards; // total cards in game
-@property (nonatomic, strong)NSMutableArray *cardsToCheck;
 @end
 
 @implementation CardGame
 -(NSMutableArray *)cards {
     if(!_cards) _cards = [[NSMutableArray alloc] init];
     return _cards;
+}
+
+-(NSUInteger)flipCount {
+    if (!_flipCount) _flipCount = 0;
+    return _flipCount;
 }
 
 -(NSMutableArray *)cardsToCheck {
@@ -51,6 +55,7 @@ static const int CARDS_TO_CHECK = 3;
 
 -(void)chooseCardAtIndex:(NSUInteger)index {
     Card *card = [self cardAtIndex:index];
+    self.flipCount++;
     if ([self cardIsNotSelected:card]) {
         [self.cardsToCheck addObject:card];
         self.score -= COST_TO_CHOOSE;
