@@ -10,4 +10,5 @@
 
 @interface PlayingCardGameStatsViewController : UIViewController
 @property (nonatomic) NSUInteger flipCount;
+@property (nonatomic) NSInteger score;
 @end

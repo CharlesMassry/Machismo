@@ -10,7 +10,7 @@
 
 @interface PlayingCardGameStatsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipCountLabel;
-
+@property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @end
 
 @implementation PlayingCardGameStatsViewController
@@ -24,6 +24,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.flipCountLabel.text = [NSString stringWithFormat:@"Flips: %lu", self.flipCount];
+    self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.score];
 }
 
 - (void)didReceiveMemoryWarning {

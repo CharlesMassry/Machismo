@@ -31,6 +31,7 @@
         if ([segue.destinationViewController isKindOfClass:[PlayingCardGameStatsViewController class]]) {
             PlayingCardGameStatsViewController *playingCardGameStatsController = (PlayingCardGameStatsViewController *)segue.destinationViewController;
             playingCardGameStatsController.flipCount = self.game.flipCount;
+            playingCardGameStatsController.score = self.game.score;
         }
     }
 }
