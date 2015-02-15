@@ -17,5 +17,6 @@
 -(Card *)cardAtIndex:(NSUInteger)index;
 @property(nonatomic, readonly)NSInteger score;
 @property(nonatomic) NSUInteger flipCount;
+@property(nonatomic) NSInteger scoreForTouch;
 @property (nonatomic, strong)NSMutableArray *cardsToCheck;
 @end

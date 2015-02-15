@@ -54,15 +54,16 @@ static const int COST_TO_CHOOSE = 1;
 static const int CARDS_TO_CHECK = 3;
 
 -(void)chooseCardAtIndex:(NSUInteger)index {
+    self.scoreForTouch = 0;
     Card *card = [self cardAtIndex:index];
     self.flipCount++;
     if ([self cardIsNotSelected:card]) {
         [self.cardsToCheck addObject:card];
+        self.scoreForTouch -= COST_TO_CHOOSE;
         self.score -= COST_TO_CHOOSE;
         if ([self rightNumberOfCardsToCheck]) {
             card.chosen = YES;
         } else {
-            [self.cardsToCheck addObject:card];
             if (!card.isMatched) {
                 if (card.isChosen) {
                     [self.cardsToCheck removeObject:card];
@@ -73,10 +74,12 @@ static const int CARDS_TO_CHECK = 3;
                         if ([self cardIsChosenAndNotMatched:otherCard]) {
                             int matchScore = [card match:self.cardsToCheck];
                             if (matchScore) {
+                                self.scoreForTouch += matchScore * MATCH_BONUS;
                                 self.score += matchScore * MATCH_BONUS;
                                 card.matched = YES;
                                 otherCard.matched = YES;
                             } else {
+                                self.scoreForTouch -= MISMATCH_PENALTY;
                                 self.score -= MISMATCH_PENALTY;
                                 noneMatched = YES;
                             }

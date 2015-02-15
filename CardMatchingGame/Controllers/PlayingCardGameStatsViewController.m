@@ -11,6 +11,8 @@
 @interface PlayingCardGameStatsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+@property (weak, nonatomic) IBOutlet UILabel *gameCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *totalScoreLabel;
 @end
 
 @implementation PlayingCardGameStatsViewController
@@ -25,6 +27,8 @@
     [super viewWillAppear:animated];
     self.flipCountLabel.text = [NSString stringWithFormat:@"Flips: %lu", self.flipCount];
     self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.score];
+    self.gameCountLabel.text = [NSString stringWithFormat:@"Games: %lu", self.gameCount];
+    self.totalScoreLabel.text = [NSString stringWithFormat:@"Total Score: %ld", (long)self.totalScore];
 }
 
 - (void)didReceiveMemoryWarning {
