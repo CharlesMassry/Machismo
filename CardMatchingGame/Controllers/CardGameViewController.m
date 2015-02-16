@@ -17,7 +17,8 @@
 -(CardGame *)game {
     if (!_game) {
         _game = [[CardGame alloc] initWithCardCount:self.cardButtons.count
-                                          usingDeck:[self createDeck]];
+                                          usingDeck:[self createDeck]
+                                    andCardsToCount:[self numberOfCardsToCheck]];
     }
     
     return _game;
@@ -25,6 +26,10 @@
 
 -(Deck *)createDeck { // abstract
     return nil;
+}
+
+-(NSUInteger)numberOfCardsToCheck {
+    return 0;
 }
 
 -(NSUInteger)newGameCounter {
@@ -70,7 +75,7 @@
 - (IBAction)touchForNewGameButton:(UIButton *)sender {
     self.game = nil;
     self.game = [[CardGame alloc] initWithCardCount:self.cardButtons.count
-                              usingDeck:[self createDeck]];
+                              usingDeck:[self createDeck] andCardsToCount:self.game.numberOfCardsToCheck];
     self.flipCount = 0;
     self.newGameCounter++;
     [self updateUI];

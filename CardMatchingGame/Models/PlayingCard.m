@@ -15,6 +15,8 @@
     BOOL rankMatch = YES;
     BOOL suitMatch = YES;
     for (PlayingCard *otherCard in otherCards) {
+        NSLog(@"self: %@", self.contents);
+        NSLog(@"%@", otherCard.contents);
         if ([self.suit isEqualToString:otherCard.suit] && suitMatch) {
             rankMatch = NO;
         } else if (otherCard.rank == self.rank && rankMatch) {

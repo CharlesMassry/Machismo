@@ -6,16 +6,16 @@
 //  Copyright (c) 2015 Charlie Massry. All rights reserved.
 //
 
-#import "PlayingCardGameStatsViewController.h"
+#import "CardGameStatsViewController.h"
 
-@interface PlayingCardGameStatsViewController ()
+@interface CardGameStatsViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *flipCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
 @property (weak, nonatomic) IBOutlet UILabel *gameCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalScoreLabel;
 @end
 
-@implementation PlayingCardGameStatsViewController
+@implementation CardGameStatsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

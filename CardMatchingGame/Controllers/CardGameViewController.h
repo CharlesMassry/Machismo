@@ -21,6 +21,7 @@
 // protected
 // for subclasses
 -(Deck *)createDeck;
+-(NSUInteger)numberOfCardsToCheck;
 
 @end
 

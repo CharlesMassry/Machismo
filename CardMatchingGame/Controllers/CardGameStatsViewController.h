@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PlayingCardGameStatsViewController : UIViewController
+@interface CardGameStatsViewController : UIViewController
 @property (nonatomic) NSUInteger flipCount;
 @property (nonatomic) NSInteger score;
 @property (nonatomic) NSUInteger gameCount;

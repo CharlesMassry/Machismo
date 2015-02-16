@@ -8,7 +8,7 @@
 
 #import "PlayingCardGameViewController.h"
 #import "PlayingCardDeck.h"
-#import "PlayingCardGameStatsViewController.h"
+#import "CardGameStatsViewController.h"
 
 @interface PlayingCardGameViewController ()
 
@@ -20,11 +20,15 @@
     return [[PlayingCardDeck alloc] init];
 }
 
+-(NSUInteger)numberOfCardsToCheck {
+    return 2;
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"Playing Card Stats"]) {
-        if ([segue.destinationViewController isKindOfClass:[PlayingCardGameStatsViewController class]]) {
+        if ([segue.destinationViewController isKindOfClass:[CardGameStatsViewController class]]) {
             
-            PlayingCardGameStatsViewController *playingCardGameStatsController = (PlayingCardGameStatsViewController *)segue.destinationViewController;
+            CardGameStatsViewController *playingCardGameStatsController = (CardGameStatsViewController *)segue.destinationViewController;
             playingCardGameStatsController.flipCount = self.game.flipCount;
             playingCardGameStatsController.score = self.game.score;
             playingCardGameStatsController.gameCount = self.newGameCounter;

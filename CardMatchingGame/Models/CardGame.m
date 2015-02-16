@@ -30,10 +30,12 @@
 }
 
 -(instancetype)initWithCardCount:(NSUInteger)cardCount
-                     usingDeck:(Deck *)deck {
+                       usingDeck:(Deck *)deck
+                 andCardsToCount:(NSUInteger)cardsToCount {
     self = [super init];
     
     if (self) {
+        self.numberOfCardsToCheck = cardsToCount;
         for (int i = 0; i < cardCount; i++) {
             Card *card = [deck drawRandomCard];
             if (card) {
@@ -51,7 +53,6 @@
 static const int MISMATCH_PENALTY = 2;
 static const int MATCH_BONUS = 4;
 static const int COST_TO_CHOOSE = 1;
-static const int CARDS_TO_CHECK = 3;
 
 -(void)chooseCardAtIndex:(NSUInteger)index {
     self.scoreForTouch = 0;
@@ -106,7 +107,7 @@ static const int CARDS_TO_CHECK = 3;
 }
 
 -(BOOL)rightNumberOfCardsToCheck {
-    return self.cardsToCheck.count < CARDS_TO_CHECK;
+    return self.cardsToCheck.count < self.numberOfCardsToCheck;
 }
 
 -(BOOL)cardIsNotSelected:(Card *)card {

@@ -12,9 +12,11 @@
 
 @interface CardGame : NSObject
 -(instancetype) initWithCardCount:(NSUInteger)cardCount
-                      usingDeck:(Deck *)deck;
+                        usingDeck:(Deck *)deck
+                  andCardsToCount:(NSUInteger) cardsToCount;
 -(void)chooseCardAtIndex:(NSUInteger)index;
 -(Card *)cardAtIndex:(NSUInteger)index;
+@property(nonatomic) NSUInteger numberOfCardsToCheck;
 @property(nonatomic, readonly)NSInteger score;
 @property(nonatomic) NSUInteger flipCount;
 @property(nonatomic) NSInteger scoreForTouch;
