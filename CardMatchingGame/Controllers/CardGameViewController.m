@@ -6,7 +6,9 @@
 //  Copyright (c) 2015 Charlie Massry. All rights reserved.
 
 #import "CardGameViewController.h"
+#import "CardGameStatsViewController.h"
 #import "CardGame.h"
+#import "SetCard.h"
 
 @interface CardGameViewController ()
 @property (weak, nonatomic) IBOutlet UINavigationItem *scoreLabel;
@@ -28,7 +30,7 @@
     return nil;
 }
 
--(NSUInteger)numberOfCardsToCheck {
+-(NSUInteger)numberOfCardsToCheck { // abstract
     return 0;
 }
 
@@ -58,31 +60,48 @@
     for (UIButton *cardButton in self.cardButtons) {
         NSUInteger cardButtonIndex = [self.cardButtons indexOfObject:cardButton];
         Card *card = [self.game cardAtIndex:cardButtonIndex];
-        [cardButton setTitle:[self titleForCard:card] forState:UIControlStateNormal];
-        [cardButton setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
+        
+        [cardButton setAttributedTitle:[self titleForCard:card]
+                              forState:UIControlStateNormal];
+        
+        [cardButton setBackgroundImage:[self backgroundImageForCard:card]
+                              forState:UIControlStateNormal];
+        
         cardButton.enabled = !card.isMatched;
     }
     self.scoreLabel.title = [NSString stringWithFormat:@"Score: %ld", (long)self.game.score];
 }
 
--(NSString *)titleForCard:(Card *)card {
-    if (card.isChosen) {
-        return card.contents;
-    } else {
-        return @"";
-    }
-}
 - (IBAction)touchForNewGameButton:(UIButton *)sender {
     self.game = nil;
     self.game = [[CardGame alloc] initWithCardCount:self.cardButtons.count
-                              usingDeck:[self createDeck] andCardsToCount:self.game.numberOfCardsToCheck];
+                                          usingDeck:[self createDeck]
+                                    andCardsToCount:self.game.numberOfCardsToCheck];
     self.flipCount = 0;
     self.newGameCounter++;
     [self updateUI];
 }
 
+-(NSAttributedString *)titleForCard:(Card *)card {
+    return card.isChosen ? card.contents : [[NSAttributedString alloc] initWithString:@""];
+}
+
 -(UIImage *)backgroundImageForCard:(Card *)card {
     return [UIImage imageNamed:card.isChosen ? @"cardFront" : @"cardBack"];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"Set Card Stats"] ||
+        [segue.identifier isEqualToString:@"Playing Card Stats"]) {
+        if ([segue.destinationViewController isKindOfClass:[CardGameStatsViewController class]]) {
+            
+            CardGameStatsViewController *playingCardGameStatsController = (CardGameStatsViewController *)segue.destinationViewController;
+            playingCardGameStatsController.flipCount = self.game.flipCount;
+            playingCardGameStatsController.score = self.game.score;
+            playingCardGameStatsController.gameCount = self.newGameCounter;
+            playingCardGameStatsController.totalScore = self.totalScore;
+        }
+    }
 }
 
 @end

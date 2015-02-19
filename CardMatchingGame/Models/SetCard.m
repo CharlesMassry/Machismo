@@ -7,12 +7,20 @@
 //
 
 #import "SetCard.h"
+#import <UIKit/UIKit.h>
 
 @implementation SetCard
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"number: %lu \n color: %@ \n symbol: %@ \n shading: %@", self.number, self.color, self.symbol, self.shading];
+}
+
+#pragma mark - matching
+
 -(int)match:(NSArray *)otherCards {
     NSMutableArray *otherCardsToCheck = [[NSMutableArray alloc] initWithArray:otherCards];
-    [otherCardsToCheck removeObjectAtIndex:[otherCardsToCheck indexOfObject:self]];
+    [otherCardsToCheck removeObject:self];
     int score = 0;
     BOOL allColorMatched    = YES,
         allSymbolMatched    = YES,
@@ -22,9 +30,7 @@
         allDifferentSymbol  = 0,
         allDifferentShading = 0,
         allDifferentNumber  = 0;
-    NSLog(@"self: %@", self.contents);
     for (SetCard *otherCard in otherCardsToCheck) {
-        NSLog(@"%@", otherCard.contents);
         if ([self differentColor:otherCard]) {
             allColorMatched = NO;
             allDifferentColor++;
@@ -42,11 +48,6 @@
             allDifferentNumber++;
         }
     }
-    
-    NSLog(@"allDifferentColor: %d", allDifferentColor);
-    NSLog(@"allDifferentSymbol: %d", allDifferentSymbol);
-    NSLog(@"allDifferentShading: %d", allDifferentShading);
-    NSLog(@"allDifferentNumber: %d", allDifferentNumber);
     
     if (allColorMatched) {
         score += 4;
@@ -83,6 +84,8 @@
     return score;
 }
 
+#pragma mark - initialization
+
 -(instancetype)initWithColor:(NSString *)color symbol:(NSString *)symbol number:(NSUInteger)number andShading:(NSString *)shading {
     self = [super init];
     
@@ -91,14 +94,48 @@
         [self setColor:color];
         [self setSymbol:symbol];
         [self setShading:shading];
+        NSAttributedString *contentsOfCard = [self createContents];
+        [self setContents:contentsOfCard];
     }
     
     return self;
 }
 
--(NSString *)contents {
-    return [NSString stringWithFormat:@"%@ %@ %@ %lu", self.shading, self.color, self.symbol, self.number];
+-(NSAttributedString *)createContents {
+    NSString *colorNamed = [_color stringByAppendingString:@"Color"];
+    SEL colorSelector = NSSelectorFromString(colorNamed);
+    UIColor *uiColor = [UIColor performSelector:colorSelector];
+    NSDictionary *attributes = [self getShadingAttributesWithColor:uiColor andShading:_shading];
+
+    NSString *symbolDisplay = [@"" stringByPaddingToLength:_number withString:_symbol startingAtIndex:0];
+    
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithString:symbolDisplay attributes:attributes];
+    
+    return attributedString;
 }
+
+-(NSDictionary *)getShadingAttributesWithColor:(UIColor *)color andShading:(NSString *)shading {
+    if ([shading isEqualToString:@"solid"]) {
+        return @{
+                 NSStrokeWidthAttributeName : @-5,
+                 NSForegroundColorAttributeName : color
+                };
+    } else if ([shading isEqualToString:@"striped"]) {
+        return @{
+                 NSStrokeWidthAttributeName : @-5,
+                 NSStrokeColorAttributeName : color,
+                 NSForegroundColorAttributeName : [color colorWithAlphaComponent:0.1]
+                };
+    } else if ([shading isEqualToString:@"open"]) {
+        return @{
+                 NSStrokeWidthAttributeName : @5,
+                 NSForegroundColorAttributeName : color
+                };
+    }
+    return nil;
+}
+
+#pragma mark - attributeEquality
 
 -(BOOL)differentColor:(SetCard *)otherCard {
     return [self.color isEqualToString:otherCard.color];
@@ -116,6 +153,8 @@
     return self.number == otherCard.number;
 }
 
+
+#pragma mark - validAttributes
 + (NSArray *)validColors
 {
     return @[@"red", @"green", @"blue"];

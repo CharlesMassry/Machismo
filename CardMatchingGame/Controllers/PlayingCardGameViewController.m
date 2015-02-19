@@ -24,17 +24,4 @@
     return 2;
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"Playing Card Stats"]) {
-        if ([segue.destinationViewController isKindOfClass:[CardGameStatsViewController class]]) {
-            
-            CardGameStatsViewController *playingCardGameStatsController = (CardGameStatsViewController *)segue.destinationViewController;
-            playingCardGameStatsController.flipCount = self.game.flipCount;
-            playingCardGameStatsController.score = self.game.score;
-            playingCardGameStatsController.gameCount = self.newGameCounter;
-            playingCardGameStatsController.totalScore = self.totalScore;
-        }
-    }
-}
-
 @end

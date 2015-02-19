@@ -18,10 +18,10 @@
         for (NSString *color in [SetCard validColors]) {
             for (NSString *symbol in [SetCard validSymbols]) {
                 for (NSString *shading in [SetCard validShadings]) {
-                    for (NSNumber *number in [SetCard validNumbers]) {
+                    for (NSUInteger number = 1; number <= [[SetCard validNumbers] count]; number++) {
                         SetCard *setCard = [[SetCard alloc] initWithColor:color
                                                                    symbol:symbol
-                                                                   number:[number integerValue]
+                                                                   number:number
                                                                andShading:shading];
                         [self addCard:setCard];
                     }

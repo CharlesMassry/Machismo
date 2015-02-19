@@ -7,6 +7,7 @@
 //
 
 #import "PlayingCard.h"
+#import <UIKit/UIKit.h>
 
 @implementation PlayingCard
 
@@ -15,8 +16,6 @@
     BOOL rankMatch = YES;
     BOOL suitMatch = YES;
     for (PlayingCard *otherCard in otherCards) {
-        NSLog(@"self: %@", self.contents);
-        NSLog(@"%@", otherCard.contents);
         if ([self.suit isEqualToString:otherCard.suit] && suitMatch) {
             rankMatch = NO;
         } else if (otherCard.rank == self.rank && rankMatch) {
@@ -48,9 +47,10 @@
     return self;
 }
 
--(NSString *)contents {
+-(NSAttributedString *)contents {
     NSArray *ranks = [self.class rankStrings];
-    return [ranks[self.rank] stringByAppendingString:self.suit];
+    NSString *contentsOfCard = [NSString stringWithFormat:@"%@%@", ranks[self.rank], self.suit];
+    return [[NSAttributedString alloc] initWithString:contentsOfCard attributes:@{ NSForegroundColorAttributeName : [UIColor blackColor] }];
 }
 
 +(NSArray *)rankStrings {
@@ -81,7 +81,4 @@
     }
 }
 
--(NSString *)description {
-    return self.contents;
-}
 @end

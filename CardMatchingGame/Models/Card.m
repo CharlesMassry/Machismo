@@ -12,9 +12,9 @@
 
 -(int)match:(NSArray *)otherCards {
     int score = 0;
-    
+
     for (Card *card in otherCards) {
-        if ([card.contents isEqualToString:self.contents]) {
+        if ([card.contents.string isEqualToString:self.contents.string]) {
             score++;
         }
     }
@@ -30,6 +30,10 @@
 -(void)matchAndChoose {
     self.matched = YES;
     self.chosen = YES;
+}
+
+-(NSString *)description {
+    return self.contents.string;
 }
 
 @end
