@@ -28,6 +28,11 @@
 		35BF20E51A80649B00EC3620 /* stanford-tree.png in Resources */ = {isa = PBXBuildFile; fileRef = 35BF20E11A80649B00EC3620 /* stanford-tree.png */; };
 		35BF20E61A80649B00EC3620 /* stanford.png in Resources */ = {isa = PBXBuildFile; fileRef = 35BF20E21A80649B00EC3620 /* stanford.png */; };
 		35D4388C1A8FC04F00A36B81 /* CardGameStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D4388B1A8FC04F00A36B81 /* CardGameStatsViewController.m */; };
+		35E23C381A9761B7001097DB /* cal-high-res.png in Resources */ = {isa = PBXBuildFile; fileRef = 35E23C351A9761B7001097DB /* cal-high-res.png */; };
+		35E23C391A9761B7001097DB /* cal-low-res.png in Resources */ = {isa = PBXBuildFile; fileRef = 35E23C361A9761B7001097DB /* cal-low-res.png */; };
+		35E23C3D1A9765C0001097DB /* rutgers-scarlet-knight-high-res.png in Resources */ = {isa = PBXBuildFile; fileRef = 35E23C3B1A9765C0001097DB /* rutgers-scarlet-knight-high-res.png */; };
+		35E23C3E1A9765C0001097DB /* rutgers-scarlet-knight-low-res.png in Resources */ = {isa = PBXBuildFile; fileRef = 35E23C3C1A9765C0001097DB /* rutgers-scarlet-knight-low-res.png */; };
+		35E23C411A9766AB001097DB /* SchoolSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E23C401A9766AB001097DB /* SchoolSelectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +83,12 @@
 		35BF20E21A80649B00EC3620 /* stanford.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = stanford.png; path = Images.xcassets/stanford.png; sourceTree = "<group>"; };
 		35D4388A1A8FC04F00A36B81 /* CardGameStatsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardGameStatsViewController.h; path = Controllers/CardGameStatsViewController.h; sourceTree = "<group>"; };
 		35D4388B1A8FC04F00A36B81 /* CardGameStatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardGameStatsViewController.m; path = Controllers/CardGameStatsViewController.m; sourceTree = "<group>"; };
+		35E23C351A9761B7001097DB /* cal-high-res.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cal-high-res.png"; path = "Images.xcassets/cal-high-res.png"; sourceTree = "<group>"; };
+		35E23C361A9761B7001097DB /* cal-low-res.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cal-low-res.png"; path = "Images.xcassets/cal-low-res.png"; sourceTree = "<group>"; };
+		35E23C3B1A9765C0001097DB /* rutgers-scarlet-knight-high-res.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rutgers-scarlet-knight-high-res.png"; path = "Images.xcassets/rutgers-scarlet-knight-high-res.png"; sourceTree = "<group>"; };
+		35E23C3C1A9765C0001097DB /* rutgers-scarlet-knight-low-res.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "rutgers-scarlet-knight-low-res.png"; path = "Images.xcassets/rutgers-scarlet-knight-low-res.png"; sourceTree = "<group>"; };
+		35E23C3F1A9766AB001097DB /* SchoolSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SchoolSelectionViewController.h; path = Controllers/SchoolSelectionViewController.h; sourceTree = "<group>"; };
+		35E23C401A9766AB001097DB /* SchoolSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SchoolSelectionViewController.m; path = Controllers/SchoolSelectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,10 +172,14 @@
 		35BF20E71A8065EA00EC3620 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				35E23C351A9761B7001097DB /* cal-high-res.png */,
+				35E23C361A9761B7001097DB /* cal-low-res.png */,
 				35BF20DF1A80649B00EC3620 /* blank card hi-res.png */,
 				35BF20E01A80649B00EC3620 /* blank card rounded corner.png */,
 				35BF20E11A80649B00EC3620 /* stanford-tree.png */,
 				35BF20E21A80649B00EC3620 /* stanford.png */,
+				35E23C3B1A9765C0001097DB /* rutgers-scarlet-knight-high-res.png */,
+				35E23C3C1A9765C0001097DB /* rutgers-scarlet-knight-low-res.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -193,6 +208,8 @@
 		35BF20E91A80660200EC3620 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				35E23C3F1A9766AB001097DB /* SchoolSelectionViewController.h */,
+				35E23C401A9766AB001097DB /* SchoolSelectionViewController.m */,
 				35279C5B1A885C5800D6EFA7 /* CardGameViewController.h */,
 				35279C5C1A885C5800D6EFA7 /* CardGameViewController.m */,
 				357E61E01A911D26008C89FF /* PlayingCardGameViewController.h */,
@@ -286,12 +303,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				35BF20E51A80649B00EC3620 /* stanford-tree.png in Resources */,
+				35E23C3D1A9765C0001097DB /* rutgers-scarlet-knight-high-res.png in Resources */,
 				35A021D61A7E6F3A0070B41D /* Main.storyboard in Resources */,
+				35E23C3E1A9765C0001097DB /* rutgers-scarlet-knight-low-res.png in Resources */,
 				35BF20E41A80649B00EC3620 /* blank card rounded corner.png in Resources */,
+				35E23C391A9761B7001097DB /* cal-low-res.png in Resources */,
 				35A021DB1A7E6F3A0070B41D /* LaunchScreen.xib in Resources */,
 				35BF20E61A80649B00EC3620 /* stanford.png in Resources */,
 				35BF20E31A80649B00EC3620 /* blank card hi-res.png in Resources */,
 				35A021D81A7E6F3A0070B41D /* Images.xcassets in Resources */,
+				35E23C381A9761B7001097DB /* cal-high-res.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,6 +341,7 @@
 				35279C591A885C2100D6EFA7 /* PlayingCard.m in Sources */,
 				35279C571A885C2100D6EFA7 /* CardGame.m in Sources */,
 				35279C581A885C2100D6EFA7 /* Deck.m in Sources */,
+				35E23C411A9766AB001097DB /* SchoolSelectionViewController.m in Sources */,
 				357E61DC1A911CDB008C89FF /* SetCardDeck.m in Sources */,
 				35A021CD1A7E6F3A0070B41D /* main.m in Sources */,
 			);

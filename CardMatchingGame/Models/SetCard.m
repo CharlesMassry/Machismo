@@ -21,7 +21,6 @@
 -(int)match:(NSArray *)otherCards {
     NSMutableArray *otherCardsToCheck = [[NSMutableArray alloc] initWithArray:otherCards];
     [otherCardsToCheck removeObject:self];
-    int score = 0;
     BOOL allColorMatched    = YES,
         allSymbolMatched    = YES,
         allShadingMatched   = YES,
@@ -49,40 +48,45 @@
         }
     }
     
-    if (allColorMatched) {
-        score += 4;
-    } else if (allDifferentColor == otherCards.count) {
-        score++;
-    } else {
+    NSUInteger otherCardsCount = otherCards.count;
+    
+    int colorPoints = [self checkCardForSameFlag:allColorMatched
+                                andDifferentFlag:allDifferentColor
+                              withOtherCardCount:otherCardsCount];
+    
+    int symbolPoints = [self checkCardForSameFlag:allSymbolMatched
+                                andDifferentFlag:allDifferentSymbol
+                               withOtherCardCount:otherCardsCount];
+    
+    int shadingPoints = [self checkCardForSameFlag:allShadingMatched
+                                  andDifferentFlag:allDifferentShading
+                                withOtherCardCount:otherCardsCount];
+    
+    int numberPoints = [self checkCardForSameFlag:allNumberMatched
+                                 andDifferentFlag:allDifferentNumber
+                               withOtherCardCount:otherCardsCount];
+    
+    int totalPoints =  colorPoints + symbolPoints + shadingPoints + numberPoints;
+
+    
+    if ((colorPoints == 0 || symbolPoints == 0 || shadingPoints == 0 || numberPoints == 0) || (totalPoints % 4 != 0)) {
         return 0;
     }
-    
-    if (allSymbolMatched) {
-        score += 4;
-    } else if (allDifferentSymbol == otherCards.count) {
-        score ++;
-    } else {
-        return 0;
-    }
-    
-    if (allShadingMatched) {
-        score += 4;
-    } else if (allDifferentShading == otherCards.count) {
-        score ++;
-    } else {
-        return 0;
-    }
-    
-    if (allDifferentNumber) {
-        score += 4;
-    } else if (allDifferentNumber == otherCards.count) {
-        score++;
-    } else {
-        return 0;
-    }
-    
-    return score;
+    return totalPoints;
 }
+
+-(int)checkCardForSameFlag:(BOOL)allSame andDifferentFlag:(int)allDifferent withOtherCardCount:(NSUInteger)otherCardsCount {
+
+    if (allSame) {
+        return 4;
+    } else if (allDifferent == (otherCardsCount + 1)) {
+        return 1;
+    } else {
+        return 0;
+    }
+
+}
+
 
 #pragma mark - initialization
 

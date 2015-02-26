@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (nonatomic) NSUInteger newGameCounter;
 @property (nonatomic) NSInteger totalScore;
+@property (strong, nonatomic) NSString *school;
 // protected
 // for subclasses
 -(Deck *)createDeck;

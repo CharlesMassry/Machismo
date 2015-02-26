@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "PlayingCardGameViewController.h"
+#import "SetCardGameViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,22 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+//    NSUserDefaults *schoolChoice = [NSUserDefaults standardUserDefaults];
+//    if ([schoolChoice stringForKey:@"school"]) {
+//        PlayingCardGameViewController *playingCardGame = [[PlayingCardGameViewController alloc] init];
+//        SetCardGameViewController *setCardGame = [[SetCardGameViewController alloc] init];
+//        
+//        UINavigationController *playingNavController = [[UINavigationController alloc] initWithRootViewController:playingCardGame];
+//        UINavigationController *setNavController = [[UINavigationController alloc] initWithRootViewController:setCardGame];
+//        
+//        UITabBarController *tabBarController = [[UITabBarController alloc] init];
+//        [tabBarController setViewControllers:@[playingNavController, setNavController]];
+//        self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//        self.window.rootViewController = tabBarController;
+//        [self.window makeKeyAndVisible];
+//    }
     return YES;
 }
 

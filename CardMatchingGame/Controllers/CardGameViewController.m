@@ -7,6 +7,7 @@
 
 #import "CardGameViewController.h"
 #import "CardGameStatsViewController.h"
+#import "SchoolSelectionViewController.h"
 #import "CardGame.h"
 #import "SetCard.h"
 
@@ -49,6 +50,13 @@
     return _totalScore;
 }
 
+-(void)viewDidLoad {
+    NSUserDefaults *schoolChoice = [NSUserDefaults standardUserDefaults];
+    self.school = [schoolChoice stringForKey:@"school"];
+    [super viewDidLoad];
+    [self updateUI];
+}
+
 -(IBAction)touchCardButton:(UIButton *)sender {
     NSUInteger chosenButtonIndex = [self.cardButtons indexOfObject:sender];
     [self.game chooseCardAtIndex:chosenButtonIndex];
@@ -87,12 +95,11 @@
 }
 
 -(UIImage *)backgroundImageForCard:(Card *)card {
-    return [UIImage imageNamed:card.isChosen ? @"cardFront" : @"cardBack"];
+    return [UIImage imageNamed:card.isChosen ? @"cardFront" : self.school];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"Set Card Stats"] ||
-        [segue.identifier isEqualToString:@"Playing Card Stats"]) {
+    if ([segue.identifier isEqualToString:@"Card Stats"]) {
         if ([segue.destinationViewController isKindOfClass:[CardGameStatsViewController class]]) {
             
             CardGameStatsViewController *playingCardGameStatsController = (CardGameStatsViewController *)segue.destinationViewController;
@@ -100,6 +107,11 @@
             playingCardGameStatsController.score = self.game.score;
             playingCardGameStatsController.gameCount = self.newGameCounter;
             playingCardGameStatsController.totalScore = self.totalScore;
+        }
+    } else if ([segue.identifier isEqualToString:@"School Change"]) {
+        if ([segue.destinationViewController isKindOfClass:[SchoolSelectionViewController class]]) {
+            SchoolSelectionViewController *schoolSelectionViewController = (SchoolSelectionViewController *)segue.destinationViewController;
+            schoolSelectionViewController.cardGameViewController = self;
         }
     }
 }
